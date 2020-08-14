@@ -4,8 +4,8 @@ services:
     ghsec-jira:
       environment:
         # Repo name (normally set automatically by the action) eg.
-        # 'reload/github-security-jira'.
-        GITHUB_REPOSITORY: reload/github-security-jira
+        # 'seedrs/github-security-jira'.
+        GITHUB_REPOSITORY: Seedrs/github-security-jira
         # In repos, this is the 'GitHubSecurityToken' secret.
         GH_SECURITY_TOKEN: github_pat
         # In repos, this is the 'JiraApiToken' secret.
