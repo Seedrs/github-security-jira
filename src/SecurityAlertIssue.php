@@ -41,7 +41,7 @@ class SecurityAlertIssue extends JiraSecurityIssue
         $this->safeVersion = $data['securityVulnerability']['firstPatchedVersion']['identifier'];
         $this->vulnerableVersionRange = $data['securityVulnerability']['vulnerableVersionRange'];
         $this->manifestPath = \pathinfo($data['vulnerableManifestPath'], \PATHINFO_DIRNAME);
-        $this->severity = $data['securityVulnerability']['advisory']['severity']
+        $this->severity = $data['securityVulnerability']['advisory']['severity'];
 
         $references = [];
 
