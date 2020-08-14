@@ -41,6 +41,7 @@ class SecurityAlertIssue extends JiraSecurityIssue
         $this->safeVersion = $data['securityVulnerability']['firstPatchedVersion']['identifier'];
         $this->vulnerableVersionRange = $data['securityVulnerability']['vulnerableVersionRange'];
         $this->manifestPath = \pathinfo($data['vulnerableManifestPath'], \PATHINFO_DIRNAME);
+        $this->severity = $data['securityVulnerability']['advisory']['severity']
 
         $references = [];
 
@@ -55,7 +56,6 @@ class SecurityAlertIssue extends JiraSecurityIssue
         $advisory_description = \wordwrap($data['securityVulnerability']['advisory']['description'] ?? '', 100);
         $ecosystem = $data['securityVulnerability']['package']['ecosystem'] ?? '';
         $githubRepo = \getenv('GITHUB_REPOSITORY') ?: '';
-
         $body = <<<EOT
 - Repository: [{$githubRepo}|https://github.com/{$githubRepo}]
 - Package: {$this->package} ($ecosystem)
@@ -80,7 +80,12 @@ EOT;
 
         $this->setKeyLabel($githubRepo);
         $this->setKeyLabel($this->uniqueId());
-        $this->setTitle("{$this->package} ({$this->safeVersion})");
+        if ( $this->severity == "high severity" || $this->severity == "critical severity"  ) {
+            $this->setTitle("{$this->severity} {$this->package} ({$this->safeVersion}) in $githubRepo");
+        }
+        else {
+            $this->setTitle("{$this->package} ({$this->safeVersion}) in $githubRepo");
+        }
         $this->setBody($body);
     }
 
