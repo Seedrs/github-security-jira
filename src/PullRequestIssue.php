@@ -46,7 +46,7 @@ EOT;
 
         $this->setKeyLabel($githubRepo);
         $this->setKeyLabel($this->uniqueId());
-        $this->setTitle("{$this->package} ({$this->safeVersion})");
+        $this->setTitle("{$this->package} ({$this->safeVersion}) in $githubRepo");
         $this->setBody($body);
     }
 
