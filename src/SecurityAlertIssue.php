@@ -61,6 +61,7 @@ class SecurityAlertIssue extends JiraSecurityIssue
 - Package: {$this->package} ($ecosystem)
 - Vulnerable version: {$this->vulnerableVersionRange}
 - Secure version: {$this->safeVersion}
+- Severity : {$this->severity}
 
 EOT;
 
@@ -80,11 +81,13 @@ EOT;
 
         $this->setKeyLabel($githubRepo);
         $this->setKeyLabel($this->uniqueId());
+
         if ($this->severity === "high severity" || $this->severity === "critical severity") {
             $this->setTitle("{$this->severity} {$this->package} ({$this->safeVersion}) in $githubRepo");
         } else {
             $this->setTitle("{$this->package} ({$this->safeVersion}) in $githubRepo");
         }
+
         $this->setBody($body);
     }
 
