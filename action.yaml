@@ -1,6 +1,6 @@
 name: 'Sync GitHub Security Alerts with Jira'
 description: 'Synchronize the current repo alert state with JIRA and creates tickets accordingly.'
-author: 'reload'
+author: 'seedrs'
 outputs:
   result:
     description: 'A string summarizing actions performed'
