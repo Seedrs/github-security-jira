@@ -80,10 +80,9 @@ EOT;
 
         $this->setKeyLabel($githubRepo);
         $this->setKeyLabel($this->uniqueId());
-        if ( $this->severity == "high severity" || $this->severity == "critical severity"  ) {
+        if ($this->severity === "high severity" || $this->severity === "critical severity") {
             $this->setTitle("{$this->severity} {$this->package} ({$this->safeVersion}) in $githubRepo");
-        }
-        else {
+        } else {
             $this->setTitle("{$this->package} ({$this->safeVersion}) in $githubRepo");
         }
         $this->setBody($body);
