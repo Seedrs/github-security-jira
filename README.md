@@ -11,7 +11,7 @@ You need the following pieces set up to sync alerts with Jira:
 
 ### Repo secrets
 
-The `reload/github-security-jira` action requires you to [create two encrypted secrets](https://help.github.com/en/actions/automating-your-workflow-with-github-actions/creating-and-using-encrypted-secrets#creating-encrypted-secrets) in the repo:
+The `seedrs/github-security-jira` action requires you to [create two encrypted secrets](https://help.github.com/en/actions/automating-your-workflow-with-github-actions/creating-and-using-encrypted-secrets#creating-encrypted-secrets) in the repo:
 
 1. A secret called `GitHubSecurityToken` which should contain a [Personal Access Token](https://help.github.com/en/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line) for the GitHub user under which this action should be executed. The token must include the `public_repo` scope if checking only public repos, or the `repo` scope for use on private repos. Also, the user must have [access to security alerts in the repo](https://help.github.com/en/github/managing-security-vulnerabilities/managing-alerts-for-vulnerable-dependencies-in-your-organization).
 2. A secret called `JiraApiToken` containing an [API Token](https://confluence.atlassian.com/cloud/api-tokens-938839638.html) for the Jira user that should be used to create tickets.
@@ -47,7 +47,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: "Sync security alerts to Jira issues"
-        uses: reload/github-security-jira@v1.x
+        uses: seedrs/github-security-jira@v0.x
         env:
           GH_SECURITY_TOKEN: ${{ secrets.GitHubSecurityToken }}
           JIRA_TOKEN: ${{ secrets.JiraApiToken }}
