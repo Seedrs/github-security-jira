@@ -38,7 +38,7 @@ class SecurityAlertIssue extends JiraSecurityIssue
     {
         // phpcs:enable SlevomatCodingStandard.TypeHints.DisallowMixedTypeHint.DisallowedMixedTypeHint
         $this->package = $data['securityVulnerability']['package']['name'];
-        $this->safeVersion = $data['securityVulnerability']['firstPatchedVersion']['identifier'];
+        $this->safeVersion = $data['securityVulnerability']['firstPatchedVersion']['identifier'] ?? "not-patched";
         $this->vulnerableVersionRange = $data['securityVulnerability']['vulnerableVersionRange'];
         $this->manifestPath = \pathinfo($data['vulnerableManifestPath'], \PATHINFO_DIRNAME);
         $this->severity = $data['securityVulnerability']['severity'];
